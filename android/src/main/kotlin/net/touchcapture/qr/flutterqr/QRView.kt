@@ -228,7 +228,7 @@ class QRView(private val context: Context, messenger: BinaryMessenger, private v
                         if (allowedBarcodeTypes.size == 0 || allowedBarcodeTypes.contains(result.barcodeFormat)) {
                             val bitmap = result.bitmap
                             val stream = ByteArrayOutputStream()
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream)
                             val byteArray = stream.toByteArray()
                             bitmap.recycle()
 

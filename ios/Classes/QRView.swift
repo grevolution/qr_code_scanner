@@ -193,7 +193,7 @@ public class QRView:NSObject,FlutterPlatformView {
                                         guard let safeBytes = bytes else {
                                             return ["code": stringValue, "type": typeString]
                                         }
-                                        guard let imageBytes = image else {
+                                        guard let imageBytes = image?.jpegData(compressionQuality: 0.7) else {
                                             return ["code": stringValue, "type": typeString, "rawBytes": safeBytes]
                                         }
                                         return ["code": stringValue, "type": typeString, "rawBytes": safeBytes, "image": FlutterStandardTypedData(bytes: imageBytes)]
