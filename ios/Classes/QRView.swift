@@ -134,7 +134,7 @@ public class QRView:NSObject,FlutterPlatformView {
             if permissionGranted {
                 do {
                     try self.scanner?.startScanning(with: self.cameraFacing, resultBlock: { [weak self] codes in
-                        self.scanner?.captureStillImage { image, error in
+                        self?.scanner?.captureStillImage { image, error in
                             if let codes = codes {
                                 for code in codes {
                                     var typeString: String;
