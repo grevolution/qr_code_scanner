@@ -18,6 +18,12 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.platform.PlatformView
+import android.graphics.Bitmap
+
+import java.io.ByteArrayOutputStream
+
+
+
 
 
 class QRView(private val context: Context, messenger: BinaryMessenger, private val id: Int, private val params: HashMap<String, Any>) :
@@ -220,13 +226,19 @@ class QRView(private val context: Context, messenger: BinaryMessenger, private v
                 object : BarcodeCallback {
                     override fun barcodeResult(result: BarcodeResult) {
                         if (allowedBarcodeTypes.size == 0 || allowedBarcodeTypes.contains(result.barcodeFormat)) {
+                            val bitmap = result.bitmap
+                            val stream = ByteArrayOutputStream()
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                            val byteArray = stream.toByteArray()
+                            bitmap.recycle()
+
                             val code = mapOf(
                                     "code" to result.text,
                                     "type" to result.barcodeFormat.name,
-                                    "rawBytes" to result.rawBytes)
+                                    "rawBytes" to result.rawBytes,
+                                    "image" to byteArray)
                             channel.invokeMethod("onRecognizeQR", code)
                         }
-
                     }
 
                     override fun possibleResultPoints(resultPoints: List<ResultPoint>) {}
