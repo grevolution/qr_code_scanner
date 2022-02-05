@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'barcode_format.dart';
 
 /// The [Barcode] object holds information about the barcode or qr code.
@@ -6,11 +8,14 @@ import 'barcode_format.dart';
 /// [format] displays which type the code is.
 /// Only for Android and iOS, [rawBytes] gives a list of bytes of the result.
 class Barcode {
-  Barcode(this.code, this.format, this.rawBytes);
+  Barcode(this.code, this.format, this.rawBytes, this.image);
 
   final String? code;
   final BarcodeFormat format;
 
   /// Raw bytes are only supported by Android and iOS.
   final List<int>? rawBytes;
+
+  /// image bytes
+  final Uint8List? image;
 }
