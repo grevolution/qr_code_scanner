@@ -286,8 +286,9 @@ public class QRView:NSObject,FlutterPlatformView {
                 }
                 return result(FlutterStandardTypedData(bytes: imageBytes))
            }
+        } else {
+            return result(FlutterError(code: "404", message: "No barcode scanner found", details: nil))
         }
-        return result(FlutterError(code: "404", message: "No barcode scanner found", details: nil))
     }
 
     func getSystemFeatures(_ result: @escaping FlutterResult) {
