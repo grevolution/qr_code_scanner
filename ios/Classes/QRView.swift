@@ -282,7 +282,7 @@ public class QRView:NSObject,FlutterPlatformView {
         if let sc: MTBBarcodeScanner = self.scanner {
            sc.captureStillImage { image, error in
                 guard let imageBytes = image?.jpegData(compressionQuality: 0.7) else {
-                    return result()
+                    return result(nil)
                 }
                 return result(FlutterStandardTypedData(bytes: imageBytes))
            }
