@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:core';
 import 'dart:html' as html;
 import 'dart:js_util';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/cupertino.dart';
@@ -272,6 +273,13 @@ class QRViewControllerWeb implements QRViewController {
     // TODO: flash is simply not supported by JavaScipt. To avoid issuing applications, we always return it to be off.
     return false;
   }
+
+  @override
+  Future<Uint8List?> captureStillImage() async {
+    // TODO: flash is simply not supported by JavaScipt. To avoid issuing applications, we always return it to be off.
+    return null;
+  }
+
 
   @override
   Future<SystemFeatures> getSystemFeatures() {

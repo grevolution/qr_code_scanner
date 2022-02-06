@@ -306,6 +306,16 @@ class QRViewController {
     }
   }
 
+  /// Capture still image
+  Future<Uint8List?> captureStillImage() async {
+    try {
+      var image = await _channel.invokeMethod('captureStillImage');
+      return image;
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
+  }
+
   /// Returns which features are available on device.
   Future<SystemFeatures> getSystemFeatures() async {
     try {
